@@ -19,12 +19,12 @@ jobs:
       VCPKG_ROOT: ${{ github.workspace }}/vcpkg
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
         with:
           submodules: true
           path: src_repo
 
-      - uses: microsoft/setup-msbuild@v1.1
+      - uses: microsoft/setup-msbuild@34cfbaee7f672c76950673338facd8a73f637506  # v1.1
 
       - name: Install vcpkg
         run: |
@@ -46,7 +46,8 @@ jobs:
           cmake --build "${{ env.CMAKE_BUILD_DIR }}" --target package
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2  # v2.3.1
         with:
           name: modengine-build
           path: ${{ env.CMAKE_BUILD_DIR }}/*.zip
+          if-no-files-found: error

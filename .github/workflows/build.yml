@@ -98,8 +98,8 @@ jobs:
         shell: bash
 
       - name: 'Upload artifacts'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: 'modengine-${{ github.sha }}'
-          path: '${{ env.CMAKE_BUILD_DIR }}/ModEngine-*-win64.*' # FIXME gtierney: run-cmake isn't respecting CMAKE_INSTALL_PREFIX
+          path: '${{ env.CMAKE_BUILD_DIR }}/ModEngine-*-win64.*'
         if: ${{ github.event_name == 'push' }}

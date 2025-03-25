@@ -84,7 +84,6 @@ jobs:
           cmake -S "${{ github.workspace }}/src_repo" -B "${{ env.CMAKE_BUILD_DIR }}" -GNinja \
             -DCMAKE_TOOLCHAIN_FILE="${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" \
             -DMODENGINE_DIST_SCYLLA=1 \
-            -DMODENGINE_CRASH_REPORT_URL=${{ secrets.MODENGINE_CRASH_REPORT_URL }} \
             -DCPACK_GENERATOR=ZIP \
             -DVCPKG_OVERLAY_PORTS=src_repo/third-party/vcpkg-overlays \
             -DCMAKE_BUILD_TYPE=MinSizeRel

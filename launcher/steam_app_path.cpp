@@ -63,8 +63,26 @@ auto get_manifest_path(std::wstring_view app_id)
     return nullpath();
 }
 
+auto check_custom_game_path(const fs::path& game_exe) -> std::optional<fs::path>
+{
+    const auto custom_path = fs::path(L"E:\\Elden Ring\\Game");
+    if (fs::exists(custom_path / game_exe)) {
+        return maybe_path(custom_path);
+    }
+    return nullpath();
+}
+
 std::optional<fs::path> get_game_path(std::wstring_view app_id)
 {
+    // First check custom path for Elden Ring
+    if (app_id == L"1245620") {  // Elden Ring's app_id
+        auto custom_path = check_custom_game_path(L"eldenring.exe");
+        if (custom_path) {
+            return custom_path;
+        }
+    }
+
+    // Fall back to Steam path if custom path fails
     const auto manifest_path = get_manifest_path(app_id);
     if (!manifest_path)
         return nullpath();
